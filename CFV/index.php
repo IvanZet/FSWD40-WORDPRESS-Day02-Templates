@@ -14,44 +14,37 @@
 
 get_header(); ?>
 
-    <div class="row">
-      <h1 class="text-center"> <?php bloginfo('name'); ?></h1>
+<h1 class="text-center"> <?php bloginfo('name'); ?></h1>
+
+<div class="row">
+  
+<?php if(have_posts()) : ?>
+	<?php  while(have_posts()): the_post();  ?>
+
+<div class="col-md-3">
+  <?php if (has_post_thumbnail()) {
+    the_post_thumbnail();
+  }?>
+</div>
+
+<div class="col-md-9">
+  <a href="<?php the_permalink(); ?>" title="">
+    <h4><?php the_title(); ?></h4></a>
+  <p>Author: <?php the_author(); ?> </p>
+  <p><?php the_content(); ?>  </p>
+  <div>
+    <span class="badge">Posted <?php the_time('j F Y G:i'); ?>  </span>
+    <div class="pull-right">
+      <span class="label label-default"><?php the_category(', '); ?></span>
     </div>
-
-
-    <?php if(have_posts()) : ?>
-    	<?php  while(have_posts()): the_post();  ?>
-
-
-    <div class="col-md-12">
-      <h1><?php the_title(); ?></h1>
-      <p> <?php the_author(); ?> </p>
-      <p> <?php the_content(); ?>  </p>
-
-
-
-
-
-					<!-- 
-		    		  <p>Samara – Mexiko-Teamchef Juan Carlos Osorio hat Brasiliens Superstar Neymar nach dem WM-Aus der Mexikaner (0:2) am Montag hefig attackiert. Seine Mannschaft habe lange Zeit sehr gut gespielt. "Aber leider haben wir viel Zeit verschwendet wegen eines Spielers. Es ist eine Schande für den Fußball", sagte Osorio, ohne Neymar beim Namen zu nennen. "Dadurch haben wir unseren Rhythmus verloren." - derstandard.at/2000082717796/Mexiko-Coach-attackierte-Neymar-Eine-Schande.</p>
-		      		 -->
-      <div>
-
-        <span class="badge">Posted  <?php the_time(); ?>  </span>
-
-        <div class="pull-right"><span class="label label-default">alice</span> <span class="label label-primary">story</span> <span class="label label-success">blog</span> <span class="label label-info">personal</span> <span class="label label-warning">Warning</span>
-          <span class="label label-danger">Danger</span>
-      </div>
-      </div>
-      <hr>
-    </div>
+  </div>
+  <hr>
+</div>
 
 <?php endwhile; ?>
 <?php endif; ?>
 
-
-
-  </div>
+</div>
 
 <!-- Start Bootstrap native
 
